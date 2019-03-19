@@ -1,5 +1,4 @@
-const Pokedex = require('pokedex-promise-v2');
-const P = new Pokedex();
+const axios = require('axios');
 
 const fs = require('fs');
 const { prefix, token } = require('./config.json');
@@ -68,7 +67,7 @@ client.on('message', message => {
 	}
 
 	try {
-		command.execute(message, args, P);
+		command.execute(message, args, axios);
 	}
 	catch (error) {
 		console.error(error);
