@@ -1,9 +1,7 @@
 module.exports = {
-	name: 'smash',
-	description: 'Get smash data!',
+	name: 'smush',
+	description: 'Get the characters that currently have data available.',
 	aliases: ['s'],
-	args: true,
-	usage: '[character name]',
 	cooldown: 5,
 	execute(message, args, axios) {
 		axios({
@@ -18,9 +16,10 @@ module.exports = {
 				characters.push(char.Name);
 			})
 			characters.sort();
-			message.channel.send(characters.join(', '));
+			message.channel.send('You can get frame data on the following characters:\n' + characters.join(', '));
 		})
 		.catch(function (error) {
+			message.channel.send('Sorry, I couldn\'t get any data. Maybe the server is down?');
 			console.log('Error: ' + error);
 		})
 	},
