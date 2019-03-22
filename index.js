@@ -1,8 +1,36 @@
 const axios = require('axios');
 
 const fs = require('fs');
-const { prefix, token } = require('./config.json');
+const { prefix, discordToken, smashggToken } = require('./config.json');
 const Discord = require('discord.js');
+
+
+// smash.gg testing 
+// const smashgg = require('smashgg.js');
+// smashgg.initialize(smashggToken)
+// const Tournament = smashgg.Tournament;
+// const Event = smashgg.Event;
+// require('colors');
+
+// (async function(){
+//     let tournamentSlug = 'smash-ultimate-summit';
+//     let eventSlug = 'ultimate-singles';
+//     let meleeAtFunction = await Event.get(tournamentSlug, eventSlug);
+ 
+//     let sets = await meleeAtFunction.getSets();
+//     let phaseGroups = await meleeAtFunction.getPhaseGroups();
+ 
+//     console.log('Function 1 had %s sets played in %s phase groups', 
+//         sets.length, phaseGroups.length);
+ 
+//     console.log('Set Results:')
+//     for(var i in sets){
+//         console.log(`${String(sets[i].getFullRoundText()).magenta}: ${String(sets[i].getDisplayScore()).green}`);
+//     }
+ 
+//     return true; // exit async
+// })();
+
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -24,7 +52,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.login(token);
+client.login(discordToken);
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
